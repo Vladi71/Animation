@@ -1,5 +1,6 @@
 package ru.netology.nmedia.ui
 
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
@@ -7,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.PointF
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.animation.BounceInterpolator
 import android.view.animation.LinearInterpolator
@@ -74,7 +76,7 @@ class StatsView @JvmOverloads constructor(
             return
         }
 
-        var startFrom = -90F
+        var startFrom = -90F + (progress * 360)
         for ((index, datum) in data.withIndex()) {
             val angle = 360F * datum
             paint.color = colors.getOrNull(index) ?: randomColor()
@@ -88,6 +90,7 @@ class StatsView @JvmOverloads constructor(
             center.y + textPaint.textSize / 4,
             textPaint,
         )
+        Log.d("Some tag", center.toString())
     }
 
     private fun update() {
@@ -97,13 +100,14 @@ class StatsView @JvmOverloads constructor(
         }
         progress = 0F
 
-        valueAnimator = ValueAnimator.ofFloat(0F, 1F).apply {
+        valueAnimator = ObjectAnimator.ofFloat( 0F, 1F).apply {
             addUpdateListener { anim ->
                 progress = anim.animatedValue as Float
                 invalidate()
             }
-            duration = 4_000
-            interpolator =BounceInterpolator()
+
+            duration = 8_000
+            interpolator = BounceInterpolator()
 
         }.also {
             it.start()

@@ -29,25 +29,5 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 0.25F,
             )
         }, 3000)
-
-//        val rotation = PropertyValuesHolder.ofFloat(View.ROTATION, 0F, 360F)
-//        val alpha = PropertyValuesHolder.ofFloat(View.ALPHA, 0F, 360F)
-//        ObjectAnimator.ofPropertyValuesHolder(view, rotation, alpha)
-//            .apply {
-//                startDelay = 500
-//                duration = 4_000
-//                interpolator = LinearInterpolator()
-//
-//            }.start()
-//        val rotation = ObjectAnimator.ofFloat(view, View.ROTATION, 0F, 360F).apply {
-//            duration = 4_000
-//            start()
-//        }
-//
-//        AnimatorSet().apply {
-//            playSequentially(rotation)
-//        }.start()
-
-//
     }
 }
